@@ -32,7 +32,7 @@ def upload():
             extension = request.form.get("ext")
             contents = request_get(url).text
             randomStr = randomString(10, 16)
-            serverFileLocation = "files/" + randomStr + "." + extension
+            serverFileLocation = "static/" + randomStr + "." + extension
             with open(serverFileLocation, "wb") as f:
                 f.write(contents)
             httpFileLocation = "http://static-music-matrix.herokuapp.com/" + serverFileLocation
@@ -57,4 +57,4 @@ def errorpage(error):
     url = request.path
     return render_template("error404.html", url=url), 404
 
-app.run()
+app.run(debug=True)
